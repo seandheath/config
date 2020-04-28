@@ -113,6 +113,14 @@
       tags:
         - config
 
+    - name: Set up lightdm config
+      copy:
+        src: files/lightdm
+        dest: /etc/lightdm/lightdm-gtk-greeter.conf
+      become: yes
+      tags:
+        - config
+
     - name: Switch systemd default target
       shell: systemctl set-default graphical.target
       become: yes

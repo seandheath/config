@@ -1,5 +1,6 @@
 packages:
   - "akmod-nvidia"
+  - "adobe-source-code-pro-fonts"
   - "@base-x"
   - "@Development tools"
   - "gcc-c++"
