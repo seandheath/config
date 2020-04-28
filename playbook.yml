@@ -1,0 +1,122 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Get common variables
+      include_vars:
+        file: "common.yml"
+        name: common
+      tags:
+        - packages
+        - config
+
+    - name: Set variables for oxygen
+      include_vars:
+        file: "{{ ansible_hostname }}.yml"
+        name: hostvar
+      when: ansible_hostname == "oxygen"
+      tags:
+        - packages
+        - config
+
+    - name: Add dnf rpm repositories
+      dnf:
+        name: "{{ common.dnfrepos }}"
+      become: yes
+      tags:
+        - packages
+
+    - name: Add dnf copr repositories
+      shell: "yes | dnf copr enable {{ item }}"
+      loop: "{{ common.copr }}"
+      become: yes
+      tags:
+        - packages
+
+    - name: Install common packages
+      dnf:
+        name: "{{ common.packages }}"
+        state: latest
+      become: yes
+      tags:
+        - packages
+
+    - name: Install pip packages
+      pip:
+        name: "{{ common.pip }}"
+        executable: pip3
+        extra_args: --user
+      tags:
+        - packages
+
+    - name: Set up .profile
+      copy:
+        src: files/profile
+        dest: "$HOME/.profile"
+      tags:
+        - config
+
+    - name: Make sure alacritty folder is present
+      file:
+        path: "$HOME/.config/alacritty/"
+        state: directory
+      tags:
+        - config
+    - name: Set up alacritty config
+      copy:
+        src: files/alacritty.yml
+        dest: "$HOME/.config/alacritty/alacritty.yml"
+      tags:
+        - config
+    
+    - name: Make sure i3 folder is present
+      file:
+        path: "$HOME/.config/i3/"
+        state: directory
+      tags:
+        - config
+    - name: Set up i3 config
+      copy:
+        src: files/i3config
+        dest: "$HOME/.config/i3/config"
+      tags:
+        - config
+
+    - name: Move suspend service
+      copy:
+        src: 'files/screenlock@.service'
+        dest: '/etc/systemd/system/'
+      tags:
+        - config
+      become: yes
+
+    - name: Enable suspend service
+      systemd:
+        enabled: yes
+        name: screenlock@user.service
+      become: yes
+      tags:
+        - config
+
+    - name: Enable lightdm service
+      systemd:
+        name: lightdm
+        enabled: yes
+      become: yes
+      tags:
+        - config
+
+    - name: Switch systemd default target
+      shell: systemctl set-default graphical.target
+      become: yes
+      tags:
+        - config
+
+    - name: Append host config to i3 config
+      blockinfile:
+        path: "$HOME/.config/i3/config"
+        block: "{{ hostvar.i3config }}"
+        marker: "# Host Configuration"
+      tags:
+        - config
