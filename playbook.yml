@@ -50,6 +50,12 @@
       tags:
         - packages
 
+    - name: Set up nvidia xorg
+      copy: 
+        src: "files/nvidia-{{ ansible_hostname }}"
+        dest: /etc/X11/xorg.conf.d/20-nvidia.conf
+      become: yes
+
     - name: Set up .profile
       copy:
         src: files/profile
