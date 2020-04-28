@@ -120,6 +120,19 @@
       tags:
         - config
 
+    - name: Make sure dunst folder is present
+      file:
+        path: "$HOME/.config/dunst/"
+        state: directory
+      tags:
+        - config
+    - name: Set up dunst
+      copy:
+        src: files/dunst
+        dest: "$HOME/.config/dunst/dunstrc"
+      tags:
+        - config
+
     - name: Switch systemd default target
       shell: systemctl set-default graphical.target
       become: yes
