@@ -1,7 +1,18 @@
-i3config: |
-  workspace 1 output DP-0
-  workspace 2 output DP-2
-  workspace 3 output DP-4
-  exec --no-startup-id xrandr --output DP-0 --mode 2560x1440 --pos 0x0 --rotate left --output DP-2 --primary --mode 3840x2160 --pos 1440x0 --rotate normal --output DP-4 --mode 2560x1440 --pos 5280x0 --rotate left
-packages:
-  - iwl3160-firmware
+- name: Install wifi firmware
+  copy:
+    src: files/iwlwifi-3168-22.ucode
+    dest: /lib/firmware/
+  become: yes
+  tags:
+    - packages
+
+- name: Append monitor config to i3config
+  blockinfile:
+    path: "$HOME/.config/i3/config"
+    block: |
+        workspace 1 output DP-0
+        workspace 2 output DP-2
+        workspace 3 output DP-4
+        exec --no-startup-id xrandr --output DP-0 --mode 2560x1440 --pos 0x0 --rotate left --output DP-2 --primary --mode 3840x2160 --pos 1440x0 --rotate normal --output DP-4 --mode 2560x1440 --pos 5280x0 --rotate left
+  tags:
+    - config

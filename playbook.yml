@@ -11,14 +11,6 @@
         - packages
         - config
 
-    - name: Set variables for oxygen
-      include_vars:
-        file: "{{ ansible_hostname }}.yml"
-        name: hostvar
-      tags:
-        - packages
-        - config
-
     - name: Add dnf rpm repositories
       dnf:
         name: "{{ common.dnfrepos }}"
