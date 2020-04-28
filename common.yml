@@ -46,6 +46,7 @@ packages:
   - "xfce-polkit"
   - "dunst"
   - "levien-inconsolata-fonts"
+  - "usbutils"
   - "galculator"
   - "xfburn"
   - "nm-tray"
