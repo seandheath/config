@@ -45,6 +45,7 @@ packages:
   - "libgnome-keyring"
   - "xfce-polkit"
   - "dunst"
+  - "levien-inconsolata-fonts"
   - "galculator"
   - "xfburn"
   - "nm-tray"
