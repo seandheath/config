@@ -231,7 +231,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+Control+l exec --no-startup-id lock
+bindsym $mod+Ctrl+l exec --no-startup-id "systemctl suspend"
 
 # Autostart applications
 #exec --no-startup-id picom
