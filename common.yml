@@ -43,7 +43,6 @@ packages:
   - "gnome-keyring"
   - "libgnome-keyring"
   - "xfce-polkit"
-  - "picom"
   - "galculator"
   - "xfburn"
   - "nm-tray"
