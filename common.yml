@@ -49,7 +49,7 @@ packages:
   - "usbutils"
   - "galculator"
   - "xfburn"
-  - "nm-tray"
+  - "network-manager-applet"
   - "cmake"
   - "dmenu"
   - "https://github.com/Zettlr/Zettlr/releases/download/v1.6.0/Zettlr-1.6.0-x86_64.rpm"
