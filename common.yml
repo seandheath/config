@@ -53,6 +53,7 @@ packages:
   - "numix-icon-theme"
   - "numix-icon-theme-circle"
   - "lxappearance"
+  - "oxygen-cursor-themes"
   - "network-manager-applet"
   - "cmake"
   - "dmenu"
