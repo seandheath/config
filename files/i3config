@@ -235,6 +235,7 @@ bindsym $mod+Ctrl+l exec --no-startup-id "systemctl suspend"
 
 # Autostart applications
 #exec --no-startup-id picom
+exec --no-startup-id lxpolkit
 exec --no-startup-id xautolock -time 10 -locker 'xautolock -ec "001A33"'
 exec --no-startup-id blueman-applet
 exec --no-startup-id nextcloud
