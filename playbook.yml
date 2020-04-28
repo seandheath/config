@@ -49,6 +49,13 @@
       tags:
         - packages
 
+    - name: Install host packages
+      dnf:
+        name: "{{ hostvar.packages }}"
+      become: yes
+      tags:
+        - packages
+
     - name: Set up nvidia xorg
       copy: 
         src: "files/nvidia-{{ ansible_hostname }}"
