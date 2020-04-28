@@ -41,13 +41,6 @@
       tags:
         - packages
 
-    - name: Install host packages
-      dnf:
-        name: "{{ hostvar.packages }}"
-      become: yes
-      tags:
-        - packages
-
     - name: Set up nvidia xorg
       copy: 
         src: "files/nvidia-{{ ansible_hostname }}"
@@ -138,10 +131,4 @@
       tags:
         - config
 
-    - name: Append host config to i3 config
-      blockinfile:
-        path: "$HOME/.config/i3/config"
-        block: "{{ hostvar.i3config }}"
-        marker: "# Host Configuration"
-      tags:
-        - config
+    - include_tasks: "{{ ansible_hostname }}.yml"
