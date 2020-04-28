@@ -4,6 +4,7 @@ packages:
   - "@base-x"
   - "@Development tools"
   - "gcc-c++"
+  - "seahorse"
   - "upower"
   - "lightdm-gtk"
   - "lightdm-gtk-greeter-settings"
