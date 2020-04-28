@@ -4,6 +4,7 @@ packages:
   - "@base-x"
   - "@Development tools"
   - "gcc-c++"
+  - "upower"
   - "lightdm-gtk"
   - "lightdm-gtk-greeter-settings"
   - "xautolock"
