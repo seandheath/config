@@ -32,6 +32,8 @@ packages:
   - "libreoffice"
   - "pigz"
   - "pulseaudio"
+  - "wine"
+  - "wine-dxvk"
   - "pavucontrol"
   - "pulseaudio-module-bluetooth-freeworld"
   - "redshift"
