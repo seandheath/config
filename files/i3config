@@ -234,7 +234,7 @@ mode "resize" {
 bindsym $mod+Ctrl+l exec --no-startup-id "systemctl suspend"
 
 # Screenshots
-bindsym Mod4+s exec "flameshot gui"
+bindsym Mod4+s exec --no-startup-id "flameshot gui"
 
 # Autostart applications
 #exec --no-startup-id picom
