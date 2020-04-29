@@ -60,6 +60,10 @@ packages:
   - "cmake"
   - "dmenu"
   - "picom"
+  - "libX11-devel"
+  - "libXinerama-devel"
+  - "imlib2-devel"
+  - "flameshot"
   - "https://github.com/Zettlr/Zettlr/releases/download/v1.6.0/Zettlr-1.6.0-x86_64.rpm"
 
 pip:

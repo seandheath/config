@@ -234,14 +234,14 @@ mode "resize" {
 bindsym $mod+Ctrl+l exec --no-startup-id "systemctl suspend"
 
 # Screenshots
-bindsym Mod4+s exec "xfce4-screenshooter -rc"
+bindsym Mod4+s exec "flameshot gui"
 
 # Autostart applications
 #exec --no-startup-id picom
 exec --no-startup-id lxpolkit
 exec --no-startup-id xautolock -time 10 -locker 'i3lock -ec "001A33"'
 exec --no-startup-id blueman-applet
-exec --no-startup-id nextcloud
+exec --no-startup-id nextcloud --background
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot
 exec --no-startup-id xsetroot -cursor_name left_ptr
