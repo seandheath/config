@@ -45,6 +45,7 @@ packages:
   - "libgnome-keyring"
   - "lxpolkit"
   - "progress"
+  - "firefox"
   - "dunst"
   - "levien-inconsolata-fonts"
   - "usbutils"
