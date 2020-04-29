@@ -31,7 +31,6 @@ packages:
   - "keepassxc"
   - "libreoffice"
   - "pigz"
-  - "xfce4-screenshooter"
   - "pulseaudio"
   - "pavucontrol"
   - "pulseaudio-module-bluetooth-freeworld"
