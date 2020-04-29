@@ -239,12 +239,13 @@ bindsym Mod4+s exec "xfce4-screenshooter -rc"
 # Autostart applications
 #exec --no-startup-id picom
 exec --no-startup-id lxpolkit
-exec --no-startup-id xautolock -time 10 -locker 'xautolock -ec "001A33"'
+exec --no-startup-id xautolock -time 10 -locker 'i3lock -ec "001A33"'
 exec --no-startup-id blueman-applet
 exec --no-startup-id nextcloud
 exec --no-startup-id nm-applet
 exec --no-startup-id xsetroot
 exec --no-startup-id xsetroot -cursor_name left_ptr
+exec --no-startup-id "sleep 10;picom -b"
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
