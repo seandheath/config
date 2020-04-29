@@ -233,6 +233,9 @@ mode "resize" {
 # Lock screen
 bindsym $mod+Ctrl+l exec --no-startup-id "systemctl suspend"
 
+# Screenshots
+bindsym Mod4+s exec "xfce4-screenshooter -rc"
+
 # Autostart applications
 #exec --no-startup-id picom
 exec --no-startup-id lxpolkit
