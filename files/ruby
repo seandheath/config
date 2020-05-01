@@ -1,1 +1,1 @@
-gem: --bindir "$HOME/.gem/bin"
+gem: --bindir .gem/bin
