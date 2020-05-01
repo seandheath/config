@@ -112,6 +112,13 @@
       tags:
         - config
 
+    - name: Set up ruby config
+      copy:
+        src: files/ruby
+        dest: "$HOME/.gemrc"
+      tags:
+        - config
+
     - name: Make sure dunst folder is present
       file:
         path: "$HOME/.config/dunst/"
