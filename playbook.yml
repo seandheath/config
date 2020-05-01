@@ -131,4 +131,18 @@
       tags:
         - config
 
+    - name: Set up flathub
+      shell: "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+      tags:
+        - packages
+
+    - name: Install flatpaks
+      flatpak:
+        name: "{{ item.name }}"
+        remote: "{{ item.remote }}"
+        state: present
+      with_items: "{{ common.flatpak }}"
+      tags:
+        - packages
+
     - include_tasks: "{{ ansible_hostname }}.yml"

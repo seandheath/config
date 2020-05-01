@@ -1,2 +1,6 @@
 export BROWSER=chromium-browser
 export TERMINAL=/usr/bin/alacritty
+export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/applications:/var/lib/flatpak/exports/share/applications:/usr/local/share:/usr/share/
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share

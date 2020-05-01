@@ -63,6 +63,9 @@ packages:
   - "libXinerama-devel"
   - "imlib2-devel"
   - "flameshot"
+  - "buildah"
+  - "podman"
+  - "flatpak"
   - "https://github.com/Zettlr/Zettlr/releases/download/v1.6.0/Zettlr-1.6.0-x86_64.rpm"
   - "https://prerelease.keybase.io/keybase_amd64.rpm"
 
@@ -76,3 +79,7 @@ dnfrepos:
 copr:
   - "pschyska/alacritty"
   - "gregw/i3desktop"
+
+flatpak:
+  - name: "us.zoom.Zoom"
+    remote: "flathub"
