@@ -4,3 +4,5 @@ export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/applications:/var/lib/fl
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem

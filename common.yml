@@ -66,6 +66,7 @@ packages:
   - "buildah"
   - "podman"
   - "flatpak"
+  - "ruby"
   - "https://github.com/Zettlr/Zettlr/releases/download/v1.6.0/Zettlr-1.6.0-x86_64.rpm"
   - "https://prerelease.keybase.io/keybase_amd64.rpm"
 

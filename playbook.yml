@@ -145,4 +145,4 @@
       tags:
         - packages
 
-    - include_tasks: "{{ ansible_hostname }}.yml"
+    - include_tasks: "hosts/{{ ansible_hostname }}.yml"
