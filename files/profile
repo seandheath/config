@@ -7,3 +7,4 @@ export XDG_DATA_HOME=$HOME/.local/share
 export GEM_HOME=$HOME/.gem
 export GEM_PATH=$HOME/.gem
 export PATH=$HOME/.gem/bin:$PATH
+export REFDIR=$HOME/data/zettlr/refs

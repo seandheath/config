@@ -19,8 +19,10 @@
         - packages
 
     - name: Add dnf copr repositories
-      shell: "yes | dnf copr enable {{ item }}"
-      loop: "{{ common.copr }}"
+      command:
+        cmd: "dnf copr enable -y {{ item.name }}"
+        creates: "/etc/yum.repos.d/{{ item.repofile }}"
+      with_items: "{{ common.copr }}"
       become: yes
       tags:
         - packages
@@ -139,7 +141,10 @@
         - config
 
     - name: Set up flathub
-      shell: "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+      flatpak_remote:
+        name: flathub
+        flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
+      become: yes
       tags:
         - packages
 
@@ -151,5 +156,23 @@
       with_items: "{{ common.flatpak }}"
       tags:
         - packages
+
+    - name: Make flatpak executables
+      blockinfile:
+        path: "/usr/bin/{{ item.executable }}"
+        create: yes
+        mode: 0755
+        block: |
+          #!/bin/bash
+          flatpak run {{ item.name }}
+      with_items: "{{ common.flatpak }}"
+      become: yes
+
+    - name: Install pdfannots
+      copy:
+        src: files/pdfannots
+        dest: /usr/bin/pdfannots
+        mode: 0755
+      become: yes
 
     - include_tasks: "hosts/{{ ansible_hostname }}.yml"

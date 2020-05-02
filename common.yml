@@ -72,15 +72,22 @@ packages:
 
 pip:
   - "bumblebee-status"
+  - "pdfminer.six"
 
 dnfrepos:
   - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm"
   - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm"
 
 copr:
-  - "pschyska/alacritty"
-  - "gregw/i3desktop"
+  - name: "pschyska/alacritty"
+    repofile: "_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo"
+  - name: "gregw/i3desktop"
+    repofile: "_copr:copr.fedorainfracloud.org:gregw:i3desktop.repo"
 
 flatpak:
   - name: "us.zoom.Zoom"
     remote: "flathub"
+    executable: "zoom"
+  - name: "com.visualstudio.code.oss"
+    remote: "flathub"
+    executable: "vscodium"
