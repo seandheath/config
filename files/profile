@@ -1,10 +1,11 @@
-export BROWSER=chromium-browser
 export TERMINAL=/usr/bin/alacritty
 export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share/
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
-export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
-export PATH=$HOME/.gem/bin:$PATH
 export REFDIR=$HOME/data/zettlr/refs
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
