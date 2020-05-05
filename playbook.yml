@@ -126,18 +126,22 @@
       become: yes
       with_items:
         - ac.target
-        - ac-governor.service
         - battery.target
-        - battery-governor.service
+        - governor.service
 
-    - name: Enable battery service
+    - name: Move governor file
+      copy:
+        src: "files/update_governor.sh"
+        dest: "/usr/bin/update_governor"
+        mode: 0755
+      become: yes
+
+    - name: Enable governor service
       systemd:
         enabled: yes
-        name: "{{ item }}"
+        name: governor.service
       become: yes
-      with_items:
-        - ac-governor.service
-        - battery-governor.service
+
 
     - name: Enable lightdm service
       systemd:

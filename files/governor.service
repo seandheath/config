@@ -1,0 +1,11 @@
+[Unit]
+Description=Sets governor on battery power
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/update_governor
+
+[Install]
+WantedBy=battery.target
+WantedBy=ac.target
+WantedBy=multi-user.target
