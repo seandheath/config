@@ -27,6 +27,18 @@
       tags:
         - packages
 
+    - name: Import vscodium gpg key
+      rpm_key:
+        state: present
+        key: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
+      become: yes
+
+    - name: Add vscodium repository
+      copy:
+        src: files/vscodium
+        dest: /etc/yum.repos.d/vscodium.repo
+      become: yes
+
     - name: Install common packages
       dnf:
         name: "{{ common.packages }}"
@@ -97,6 +109,26 @@
       become: yes
       tags:
         - config
+
+    - name: Move battery services
+      copy:
+        src: "files/{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+      become: yes
+      with_items:
+        - ac.target
+        - ac-governor.service
+        - battery.target
+        - battery-governor.service
+
+    - name: Enable battery service
+      systemd:
+        enabled: yes
+        name: "{{ item }}"
+      become: yes
+      with_items:
+        - ac-governor.service
+        - battery-governor.service
 
     - name: Enable lightdm service
       systemd:
