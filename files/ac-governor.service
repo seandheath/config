@@ -1,9 +1,0 @@
-[Unit]
-Description=Sets governor on ac power
-
-[Service]
-Type=oneshot
-ExecStart=cpupower frequency-set --governor performance
-
-[Install]
-WantedBy=ac.target
