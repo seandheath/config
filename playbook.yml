@@ -152,18 +152,10 @@
       become: yes
 
 
-    - name: Enable lightdm service
+    - name: Enable sddm service
       systemd:
         name: lightdm
         enabled: yes
-      become: yes
-      tags:
-        - config
-
-    - name: Set up lightdm config
-      copy:
-        src: files/lightdm
-        dest: /etc/lightdm/lightdm-gtk-greeter.conf
       become: yes
       tags:
         - config
