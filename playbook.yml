@@ -63,7 +63,7 @@
     - name: Install common packages
       dnf:
         name: "{{ common.packages }}"
-        state: latest
+        state: present
       become: yes
       tags:
         - packages
