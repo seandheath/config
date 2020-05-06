@@ -1,6 +1,7 @@
 packages:
   - "akmod-nvidia"
   - "adobe-source-code-pro-fonts"
+  - "kernel-tools"
   - "@Development tools"
   - "@mate-desktop-environment"
   - "i3-gaps"

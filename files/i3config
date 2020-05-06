@@ -239,7 +239,7 @@ bar {
 	font pango:Inconsolata, FontAwesome 8
 	status_command /home/user/.local/bin/bumblebee-status \
 --markup=pango \
--m publicip nic cpu2 memory disk caffeine battery time \
+-m publicip nic cpu2 memory disk caffeine battery \
 -p time.format="%y-%m-%d %H:%M" cpu2.colored=1 cpu2.layout="cpu2.cpuload" \
   disk.format="{percent:0.0f}%" memory.format="{percent:0.0f}%" nic.states="^down" \
   pulseaudio.showbars=1 \
