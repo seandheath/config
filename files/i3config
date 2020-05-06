@@ -110,7 +110,7 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open file manager
-bindsym Mod4+e exec --no-startup-id thunar
+bindsym Mod4+e exec --no-startup-id caja
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -232,6 +232,7 @@ bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 
 # Autostart applications
 exec --no-startup-id nextcloud --background
+exec --no-startup-id picom --experimental-backends
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
