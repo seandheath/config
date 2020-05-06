@@ -29,7 +29,7 @@
 
     - name: Import vscodium gpg key
       rpm_key:
-        state: latest
+        state: present
         key: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
       become: yes
 
@@ -63,7 +63,7 @@
     - name: Install common packages
       dnf:
         name: "{{ common.packages }}"
-        state: present
+        state: latest
       become: yes
       tags:
         - packages

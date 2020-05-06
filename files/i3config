@@ -236,11 +236,11 @@ exec --no-startup-id picom --experimental-backends
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	font pango:Inconsolata, FontAwesome 8
+	font pango:Inconsolata, FontAwesome 10
 	status_command /home/user/.local/bin/bumblebee-status \
 --markup=pango \
 -m publicip nic cpu2 memory disk caffeine battery \
--p time.format="%y-%m-%d %H:%M" cpu2.colored=1 cpu2.layout="cpu2.cpuload" \
+-p cpu2.colored=1 cpu2.layout="cpu2.cpuload" \
   disk.format="{percent:0.0f}%" memory.format="{percent:0.0f}%" nic.states="^down" \
   pulseaudio.showbars=1 \
 -t solarized-powerline
