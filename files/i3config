@@ -235,7 +235,7 @@ exec --no-startup-id nextcloud --background
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	font pango:Inconsolata, FontAwesome 10
+	font pango:Inconsolata, FontAwesome 8
 	status_command /home/user/.local/bin/bumblebee-status \
 --markup=pango \
 -m publicip nic cpu2 memory disk caffeine battery time \
@@ -255,8 +255,8 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 7
-gaps outer -2
+gaps inner 5
+gaps outer -5 
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
