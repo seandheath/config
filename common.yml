@@ -50,6 +50,7 @@ packages:
   - "ulauncher"
   - "https://github.com/Zettlr/Zettlr/releases/download/v1.6.0/Zettlr-1.6.0-x86_64.rpm"
   - "https://prerelease.keybase.io/keybase_amd64.rpm"
+  - "https://download-cdn.resilio.com/2.6.4.1344/RPM/resilio-sync-2.6.4.1344-1.x86_64.rpm"
 
 pip:
   - "bumblebee-status"
