@@ -41,17 +41,6 @@
       tags:
         - packages
 
-    - name: Add RVM GPG Key
-      shell: "gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
-      when: false
-      tags:
-        - packages
-
-    - name: Install RVM
-      shell: "curl -sSL https://get.rvm.io | /bin/bash"
-      tags:
-        - packages
-
     - name: Add NordVPN Repository
       dnf:
         name: "https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm"
@@ -63,7 +52,7 @@
     - name: Install common packages
       dnf:
         name: "{{ common.packages }}"
-        state: latest
+        state: present
       become: yes
       tags:
         - packages
