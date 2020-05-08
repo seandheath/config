@@ -14,6 +14,7 @@
     - name: Add dnf rpm repositories
       dnf:
         name: "{{ common.dnfrepos }}"
+        state: present
       become: yes
       tags:
         - packages
@@ -44,7 +45,7 @@
     - name: Add NordVPN Repository
       dnf:
         name: "https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm"
-        state: latest
+        state: present
       become: yes
       tags:
         - packages
@@ -131,13 +132,6 @@
         name: governor.service
       become: yes
 
-    - name: Set up ruby config
-      copy:
-        src: files/ruby
-        dest: "$HOME/.gemrc"
-      tags:
-        - config
-
     - name: Set up flathub
       flatpak_remote:
         name: flathub
@@ -172,6 +166,24 @@
         dest: /usr/bin/pdfannots
         mode: 0755
       become: yes
+
+    - name: Install rust
+      shell: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+      args:
+          creates: $HOME/.cargo
+          warn: false
+
+    - name: Install NVM
+      shell: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | /bin/bash"
+      args: 
+          creates: $HOME/.config/nvm
+          warn: false
+
+    - name: Install RVM
+      shell: "curl -sSL https://get.rvm.io | /bin/bash -s stable --ruby -- --ignore-dotfiles"
+      args: 
+          creates: $HOME/.rvm
+          warn: false
 
     - name: Set up Mate dconf
       dconf:
