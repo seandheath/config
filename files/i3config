@@ -1,11 +1,5 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
-
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 2
@@ -30,31 +24,13 @@ font xft:Inconsolata 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-#exec --no-startup-id volumeicon
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
-
-################################################################################################
-
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
-
 # Start Applications
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+Ctrl+x --release exec --no-startup-id /usr/bin/xkill
 
 # change focus
 bindsym $mod+h focus left
@@ -110,7 +86,7 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open file manager
-bindsym Mod4+e exec --no-startup-id caja
+bindsym Mod4+e exec --no-startup-id /usr/bin/caja
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -167,6 +143,7 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [instance="keepassxc" class="KeePassXC"] floating enable
+for_window [class="Clock-applet"] floating enable
 
 # switch to workspace with urgent window automatically
 #for_window [urgent=latest] focus
@@ -205,10 +182,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -231,12 +208,11 @@ bindsym Mod4+s exec --no-startup-id "flameshot gui"
 bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 
 # Autostart applications
-exec --no-startup-id nextcloud --background
-exec --no-startup-id picom --experimental-backends
+exec --no-startup-id /usr/bin/nextcloud --background
+exec --no-startup-id /usr/bin/picom --experimental-backends
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# bar
 bar {
-	font pango:Inconsolata, FontAwesome 10
 	status_command /home/user/.local/bin/bumblebee-status \
 --markup=pango \
 -m publicip nic cpu2 memory disk caffeine battery \
@@ -245,11 +221,8 @@ bar {
   pulseaudio.showbars=1 \
 -t solarized-powerline
 	position bottom
-        tray_output primary
+        tray_output none
 }
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###
@@ -307,5 +280,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 # Host Configuration

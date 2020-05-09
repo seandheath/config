@@ -1,11 +1,3 @@
-- name: Install wifi firmware
-  copy:
-    src: files/iwlwifi-3168-22.ucode
-    dest: /lib/firmware/
-  become: yes
-  tags:
-    - packages
-
 - name: Append monitor config to i3config
   blockinfile:
     path: "$HOME/.config/i3/config"

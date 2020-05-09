@@ -11,47 +11,8 @@
         - packages
         - config
 
-    - name: Add dnf rpm repositories
-      dnf:
-        name: "{{ common.dnfrepos }}"
-        state: present
-      become: yes
-      tags:
-        - packages
-
-    - name: Add dnf copr repositories
-      command:
-        cmd: "dnf copr enable -y {{ item.name }}"
-        creates: "/etc/yum.repos.d/{{ item.repofile }}"
-      with_items: "{{ common.copr }}"
-      become: yes
-      tags:
-        - packages
-
-    - name: Import vscodium gpg key
-      rpm_key:
-        state: present
-        key: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
-      become: yes
-
-    - name: Add vscodium repository
-      copy:
-        src: files/vscodium
-        dest: /etc/yum.repos.d/vscodium.repo
-      become: yes
-      tags:
-        - packages
-
-    - name: Add NordVPN Repository
-      dnf:
-        name: "https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm"
-        state: present
-      become: yes
-      tags:
-        - packages
-
     - name: Install common packages
-      dnf:
+      pacman:
         name: "{{ common.packages }}"
         state: present
       become: yes
@@ -65,6 +26,13 @@
         extra_args: --user
       tags:
         - packages
+
+    - name: Install yay packages
+      yay:
+          name: "{{ common.yay }}"
+          state: present
+      tags:
+          - packages
         
     - name: Set up nvidia xorg
       copy: 
@@ -94,6 +62,7 @@
         dest: "$HOME/.config/alacritty/alacritty.yml"
       tags:
         - config
+      when: false
     
     - name: Make sure i3 folder is present
       file:
@@ -108,6 +77,14 @@
         dest: "$HOME/.config/i3/config"
       tags:
         - config
+
+    - name: Set up udev rules for batteries
+      copy:
+          src: "files/99-powertargets.rules"
+          dest: "/etc/udev/rules.d/"
+      become: yes
+      tags:
+          - config
 
     - name: Move battery services
       copy:
@@ -130,34 +107,6 @@
       systemd:
         enabled: yes
         name: governor.service
-      become: yes
-
-    - name: Set up flathub
-      flatpak_remote:
-        name: flathub
-        flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
-      become: yes
-      tags:
-        - packages
-
-    - name: Install flatpaks
-      flatpak:
-        name: "{{ item.name }}"
-        remote: "{{ item.remote }}"
-        state: present
-      with_items: "{{ common.flatpak }}"
-      tags:
-        - packages
-
-    - name: Make flatpak executables
-      blockinfile:
-        path: "/usr/bin/{{ item.executable }}"
-        create: yes
-        mode: 0755
-        block: |
-          #!/bin/bash
-          flatpak run {{ item.name }}
-      with_items: "{{ common.flatpak }}"
       become: yes
 
     - name: Install pdfannots
@@ -194,5 +143,12 @@
           value: "['windowmanager','panel']"
         - key: "/org/mate/desktop/session/required-components/windowmanager"
           value: '"i3"'
+
+    - name: Link vim to nvim
+      file:
+          src: /usr/bin/nvim
+          dest: /usr/bin/vim
+          state: link
+      become: yes
 
     - include_tasks: "hosts/{{ ansible_hostname }}.yml"
