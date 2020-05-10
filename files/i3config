@@ -166,7 +166,9 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [instance="keepassxc" class="KeePassXC"] floating enable
+for_window [instance="keepassxc" class="KeePassXC"] floating enable border normal
+#for_window [class="Virt-manager"] floating enable border normal
+for_window [class="Clock-applet"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 #for_window [urgent=latest] focus
@@ -245,7 +247,7 @@ bar {
   pulseaudio.showbars=1 \
 -t solarized-powerline
 	position bottom
-        tray_output primary
+        tray_output none
 }
 
 # hide/unhide i3status bar
