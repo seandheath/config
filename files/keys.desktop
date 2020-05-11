@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=False
+Exec=/usr/bin/keys
+Name=Keys
+Comment=Easily manage GPG keys

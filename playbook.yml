@@ -183,4 +183,17 @@
         - key: "/org/mate/desktop/session/required-components/windowmanager"
           value: '"i3"'
 
+    - name: Set up keys.pub
+      copy:
+          src: files/keys
+          dest: /usr/bin/keys
+          mode: 0755
+      become: yes
+
+    - name: Set up keys.pub desktop file
+      copy:
+          src: files/keys.desktop
+          dest: $HOME/.local/share/applications/
+          mode: 0755
+
     - include_tasks: "hosts/{{ ansible_hostname }}.yml"
