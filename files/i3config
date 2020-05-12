@@ -235,23 +235,14 @@ bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 # autostart applications
 exec --no-startup-id nextcloud --background
 exec --no-startup-id picom --experimental-backends
+exec --no-startup-id ulauncher --hide-window
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# bar config
 bar {
-	font pango:Inconsolata, FontAwesome 10
-	status_command /home/user/.local/bin/bumblebee-status \
---markup=pango \
--m publicip nic cpu2 memory disk caffeine battery \
--p cpu2.colored=1 cpu2.layout="cpu2.cpuload" \
-  disk.format="{percent:0.0f}%" memory.format="{percent:0.0f}%" nic.states="^down" \
-  pulseaudio.showbars=1 \
--t solarized-powerline
-	position bottom
-        tray_output none
+    status_command /usr/bin/i3status
+    tray_output none
 }
 
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
 
 #############################
 ### settings for i3-gaps: ###

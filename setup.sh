@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-set -o pipefail
 WD=$(pwd)
 
 if [ $(hostname) = "localhost" ]; then
@@ -64,6 +62,10 @@ mkdir -p ~/.config/i3
 cp files/i3config ~/.config/i3/config
 cat files/i3config-$(hostname) >> ~/.config/i3/config
 
+say "Updating i3status"
+mkdir -p ~/.config/i3status
+cp files/i3status-$(hostname) ~/.config/i3status/config
+
 say "Updating git"
 mkdir -p ~/.config/git
 cp files/git ~/.config/git/config
@@ -72,6 +74,7 @@ say "Updating governor"
 sudo cp files/{ac.target,battery.target,governor.service} /etc/systemd/system/
 sudo cp files/update_governor.sh /usr/bin/update_governor
 sudo chmod 755 /usr/bin/update_governor
+sudo cp files/99-powertargets.rules /etc/udev/rules.d/
 sudo systemctl enable --now governor.service
 
 say "Updating flatpaks"
@@ -81,6 +84,26 @@ say "Installing pdfannots"
 sudo cp files/pdfannots /usr/bin/pdfannots
 sudo chmod 755 /usr/bin/pdfannots
 
+say "Disabling NordVPN"
+sudo systemctl disable --now nordvpnd
+
+say "Disabling libvirtd"
+sudo systemctl disable --now libvirtd
+
+if [ ! -f /usr/bin/vim ]; then
+    say "Linking nvim to vim"
+    sudo ln -s /usr/bin/nvim /usr/bin/vim
+fi
+
+say "Enabling nested virtualization for AMD"
+if echo $(lsmod) | grep -q "kvm_amd"; then
+    sudo /bin/bash -c "echo 'option kvm_amd nested=1' > /etc/modprobe.d/kvm.conf"
+fi
+
+say "Enabling nested virtualization for intel"
+if echo $(lsmod) | grep -q "kvm_intel"; then
+    sudo /bin/bash -c "echo 'option kvm_intel nested=1' > /etc/modprobe.d/kvm.conf"
+fi
 
 if [ ! -d ~/.cargo ]; then
 	say "Installing rust"

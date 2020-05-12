@@ -1,4 +1,5 @@
 akmod-nvidia
+i3status
 neovim
 adobe-source-code-pro-fonts
 kernel-tools
@@ -51,3 +52,4 @@ clang-tools-extra
 ulauncher
 files/resilio-sync-2.6.4.1344-1.x86_64.rpm
 files/Zettlr-1.7.0-beta-x86_64.rpm
+xdotool
