@@ -90,6 +90,14 @@ sudo systemctl disable --now nordvpnd
 say "Disabling libvirtd"
 sudo systemctl disable --now libvirtd
 
+say "Installing profile-sync-daemon"
+if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:szasza:Profile-sync-daemon.repo ]; then
+    sudo dnf copr enable szasza/Profile-sync-daemon
+    sudo dnf install profile-sync-daemon
+    systemctl --user enable --now psd
+fi
+
+
 if [ ! -f /usr/bin/vim ]; then
     say "Linking nvim to vim"
     sudo ln -s /usr/bin/nvim /usr/bin/vim
