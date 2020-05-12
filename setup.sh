@@ -118,16 +118,17 @@ if [ ! -d ~/.cargo ]; then
 	curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
 	chmod +x /tmp/rustup.sh
 	/tmp/rustup.sh -y
+        source ~/.profile
 else
 	say "Rust already installed"
 fi
 
-if [ ! -d ~/.nvm ]; then
+if [ ! -d ~/.config/nvm ]; then
 	say "Installing NVM"
 	curl -sSL -o /tmp/nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
 	chmod +x /tmp/nvm.sh
 	/tmp/nvm.sh
-	source ~/.bash_profile
+	source ~/.bashrc
 	nvm install node
 else
 	say "NVM already installed"
@@ -138,6 +139,7 @@ if [ ! -d ~/.rvm ]; then
 	curl -sSL -o /tmp/rvm.sh https://get.rvm.io
 	chmod +x /tmp/rvm.sh
 	/tmp/rvm.sh stable --ruby
+        source ~/.bashrc
 else
 	say "RVM already installed"
 fi
