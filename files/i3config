@@ -232,7 +232,7 @@ bindsym Mod4+s exec --no-startup-id "flameshot gui"
 # KeePassXC
 bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 
-# Autostart applications
+# autostart applications
 exec --no-startup-id nextcloud --background
 exec --no-startup-id picom --experimental-backends
 
