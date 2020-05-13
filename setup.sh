@@ -94,6 +94,7 @@ sudo cp files/99-powertargets.rules /etc/udev/rules.d/
 sudo systemctl enable --now governor.service
 
 say "Enabling rslsync"
+sudo systemctl disable --now resilio-sync
 systemctl --user enable --now resilio-sync
 
 say "Updating flatpaks"
