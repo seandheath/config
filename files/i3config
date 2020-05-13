@@ -237,6 +237,7 @@ bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 exec --no-startup-id nextcloud --background
 exec --no-startup-id picom --experimental-backends
 exec --no-startup-id ulauncher --hide-window
+exec --no-startup-id redshift -t 4000:3000
 
 # bar config
 bar {
