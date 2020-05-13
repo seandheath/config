@@ -1,3 +1,4 @@
+profile-sync-daemon
 akmod-nvidia
 i3status-rs
 neovim
