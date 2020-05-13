@@ -12,7 +12,7 @@ default_border pixel 2
 default_floating_border normal
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #2fff00 #285577 #ffffff #c36f00   #c36f00
+client.focused          #006cab #292929 #ffffff #006cab   #006cab
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -169,6 +169,7 @@ for_window [class="Xfburn"] floating enable
 for_window [instance="keepassxc" class="KeePassXC"] floating enable border normal
 #for_window [class="Virt-manager"] floating enable border normal
 for_window [class="Clock-applet"] floating enable border normal
+for_window [class="Ulauncher"] floating enable border pixel 0
 
 # switch to workspace with urgent window automatically
 #for_window [urgent=latest] focus
