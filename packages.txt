@@ -19,7 +19,7 @@ rtorrent
 golang
 keepassxc
 libreoffice
-chromium
+chromium-freeworld
 pigz
 materia-gtk-theme
 mingw32-gcc

@@ -22,9 +22,9 @@ if [ ! -f /etc/yum.repos.d/rpmfusion-free.repo ]; then
 	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 fi
 
-say "Installing profile-sync-daemon"
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:szasza:Profile-sync-daemon.repo ]; then
-    sudo dnf copr enable -y szasza/Profile-sync-daemon
+	say "Adding COPR repository for profile-sync-daemon"
+	sudo dnf copr enable -y szasza/Profile-sync-daemon
 fi
 
 
@@ -57,6 +57,12 @@ if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
 	say "Setting up NVIDIA for $(hostname)"
 	sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
 fi
+
+say "Removing packages"
+sudo dnf remove -y dnfdragora
+
+say "Removing directories"
+rm -rf ~/{Documents,Music,Pictures,Public,Templates,Videos}
 
 say "Updating .profile"
 cp files/profile ~/.profile
