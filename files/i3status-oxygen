@@ -2,7 +2,8 @@
 name = "gruvbox-dark"
 icons = "awesome"
 [theme.overrides]
-alternating_tint_bg = "#004466"
+idle_bg="#007acc"
+alternating_tint_bg="#222222"
 
 [[block]]
 block = "net"

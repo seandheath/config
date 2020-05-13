@@ -74,7 +74,7 @@ cp files/alacritty.yml ~/.config/alacritty/
 say "Updating i3"
 mkdir -p ~/.config/i3
 cp files/i3config ~/.config/i3/config
-if [ -f files/i3-config$(hostname) ]; then
+if [ -f files/i3config-$(hostname) ]; then
 	cat files/i3config-$(hostname) >> ~/.config/i3/config
 fi
 
@@ -92,6 +92,9 @@ sudo cp files/update_governor.sh /usr/bin/update_governor
 sudo chmod 755 /usr/bin/update_governor
 sudo cp files/99-powertargets.rules /etc/udev/rules.d/
 sudo systemctl enable --now governor.service
+
+say "Enabling rslsync"
+systemctl --user enable --now resilio-sync
 
 say "Updating flatpaks"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo

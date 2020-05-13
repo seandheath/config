@@ -12,7 +12,7 @@ default_border pixel 2
 default_floating_border normal
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #006cab #292929 #ffffff #006cab   #006cab
+client.focused          #007acc #292929 #ffffff #007acc   #007acc
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -110,7 +110,7 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open file manager
-bindsym Mod4+e exec --no-startup-id caja
+bindsym $mod+Control+e exec --no-startup-id xdg-open /home/user
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
