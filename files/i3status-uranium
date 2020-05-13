@@ -2,6 +2,14 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
+block = "net"
+device = "wlp0s20f3"
+ssid = true
+signal_strength = true
+ip = true
+interval = 5
+
+[[block]]
 block = "disk_space"
 path = "/"
 alias = "/"
@@ -19,6 +27,7 @@ format_swap = "{SUp}%"
 
 [[block]]
 block = "cpu"
+format = "{utilization}% {frequency}GHz"
 interval = 1
 
 [[block]]
@@ -37,4 +46,4 @@ format = "{percentage}% {time}"
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d/%m %R"
+format = "%a %m/%d %R"

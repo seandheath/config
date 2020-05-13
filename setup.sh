@@ -64,7 +64,7 @@ cat files/i3config-$(hostname) >> ~/.config/i3/config
 
 say "Updating i3status"
 mkdir -p ~/.config/i3status
-cp files/i3status-$(hostname) ~/.config/i3status/config
+cp files/i3status-$(hostname) ~/.config/i3status/config.toml
 
 say "Updating git"
 mkdir -p ~/.config/git

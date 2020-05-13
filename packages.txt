@@ -1,5 +1,5 @@
 akmod-nvidia
-i3status
+i3status-rs
 neovim
 adobe-source-code-pro-fonts
 kernel-tools
