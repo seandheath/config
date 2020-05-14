@@ -5,48 +5,54 @@ set -eo pipefail
 WD=$(pwd)
 
 if [ $(hostname) = "localhost" ]; then
-	echo "Please enter new hostname: "
-	read HNAME
-	sudo hostnamectl set-hostname $HNAME
-	echo "Please close and reopen shell to read new hostname."
-	exit 1
+    echo "Please enter new hostname: "
+    read HNAME
+    sudo hostnamectl set-hostname $HNAME
+    echo "Please close and reopen shell to read new hostname."
+    exit 1
 fi
 
 say(){
-	echo ""
-	echo "$(tput bold)$1$(tput sgr0)"
+    echo ""
+    echo "$(tput bold)$1$(tput sgr0)"
 }
 
+if [ ! -f /etc/yum.repos.d/google-chrome.repo ]; then
+    say "Setting up fedora-workstation-repositories"
+    sudo dnf install fedora-workstation-repositories
+    sudo dnf config-manager --set-enabled google-chrome
+fi
+
 if [ ! -f /etc/yum.repos.d/rpmfusion-free.repo ]; then
-	say "Installing RPM Fusion"
-	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    say "Installing RPM Fusion"
+    sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 fi
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:szasza:Profile-sync-daemon.repo ]; then
-	say "Adding COPR repository for profile-sync-daemon"
-	sudo dnf copr enable -y szasza/Profile-sync-daemon
+    say "Adding COPR repository for profile-sync-daemon"
+    sudo dnf copr enable -y szasza/Profile-sync-daemon
 fi
 
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo ]; then
-	say "Adding COPR repository for Alacritty"
-	sudo dnf copr enable -y pschyska/alacritty
+    say "Adding COPR repository for Alacritty"
+    sudo dnf copr enable -y pschyska/alacritty
 fi
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:gregw:i3desktop.repo ]; then
-	say "Adding COPR repository for i3-gaps"
-	sudo dnf copr enable -y gregw/i3desktop
+    say "Adding COPR repository for i3-gaps"
+    sudo dnf copr enable -y gregw/i3desktop
 fi
 
 if [ ! -f /etc/yum.repos.d/vscodium.repo ]; then
-	say "Adding VSCodium Repository"
-	sudo rpm --import -y https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-	printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+    say "Adding VSCodium Repository"
+    sudo rpm --import -y https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+    printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 fi
 
 if [ ! -f /etc/yum.repos.d/nordvpn.repo ]; then
-	say "Adding repository for NordVPN"
-	sudo dnf install -y https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
+    say "Adding repository for NordVPN"
+    sudo dnf install -y https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
 fi
 
 say "Removing packages"
@@ -58,8 +64,8 @@ pip install --user $(sort -u ./pip.txt)
 
 
 if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
-	say "Setting up NVIDIA for $(hostname)"
-	sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
+    say "Setting up NVIDIA for $(hostname)"
+    sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
 fi
 
 say "Removing directories"
@@ -76,7 +82,7 @@ say "Updating i3"
 mkdir -p ~/.config/i3
 cp files/i3config ~/.config/i3/config
 if [ -f files/i3config-$(hostname) ]; then
-	cat files/i3config-$(hostname) >> ~/.config/i3/config
+    cat files/i3config-$(hostname) >> ~/.config/i3/config
 fi
 
 say "Updating i3status"
@@ -130,55 +136,53 @@ if echo $(lsmod) | grep -q "kvm_intel"; then
 fi
 
 if [ ! -d ~/.cargo ]; then
-	say "Installing rust"
-	curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
-	chmod +x /tmp/rustup.sh
-	/tmp/rustup.sh -y
-        source ~/.profile
+    say "Installing rust"
+    curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
+    chmod +x /tmp/rustup.sh
+    /tmp/rustup.sh -y
+    source ~/.profile
 else
-	say "Rust already installed"
+    say "Rust already installed"
 fi
 
 if [ ! -d ~/.nvm ]; then
-	say "Installing NVM"
-	curl -sSL -o /tmp/nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
-	chmod +x /tmp/nvm.sh
-	/tmp/nvm.sh
-	source ~/.bashrc
-	say "Installing node"
-	nvm install node
+    say "Installing NVM"
+    mkdir $HOME/.nvm
+    curl -sSL -o /tmp/nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
+    chmod +x /tmp/nvm.sh
+    /tmp/nvm.sh
 else
-	say "NVM already installed"
+    say "NVM already installed"
 fi
 
 if [ ! -d ~/.rvm ]; then
-	say "Installing RVM"
-	curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-	curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-	curl -sSL -o /tmp/rvm.sh https://get.rvm.io
-	chmod +x /tmp/rvm.sh
-	/tmp/rvm.sh stable --ruby
-        source ~/.bashrc
+    say "Installing RVM"
+    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+    curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
+    curl -sSL -o /tmp/rvm.sh https://get.rvm.io
+    chmod +x /tmp/rvm.sh
+    /tmp/rvm.sh stable --ruby
+    source ~/.bashrc
 else
-	say "RVM already installed"
+    say "RVM already installed"
 fi
 
 if [ ! -d ~/.config/bash ]; then
-	say "Setting up bash"
-	git clone https://github.com/seandheath/bash.git ~/.config/bash
-	~/.config/bash/setup.sh
-	cd $WD
+    say "Setting up bash"
+    git clone https://github.com/seandheath/bash.git ~/.config/bash
+    ~/.config/bash/setup.sh
+    cd $WD
 else
-	say "Bash already configured"
+    say "Bash already configured"
 fi
 
 if [ ! -d ~/.config/nvim ]; then
-	say "Setting up nvim"
-	git clone https://github.com/seandheath/vim.git ~/.config/nvim
-	~/.config/nvim/setup.sh
-	cd $WD
+    say "Setting up nvim"
+    git clone https://github.com/seandheath/vim.git ~/.config/nvim
+    ~/.config/nvim/setup.sh
+    cd $WD
 else 
-	say "nvim already configured"
+    say "nvim already configured"
 fi
 
 say "Setting iptables rules"

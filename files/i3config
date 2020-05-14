@@ -169,7 +169,6 @@ for_window [class="Xfburn"] floating enable
 for_window [instance="keepassxc" class="KeePassXC"] floating enable border normal
 #for_window [class="Virt-manager"] floating enable border normal
 for_window [class="Clock-applet"] floating enable border normal
-for_window [class="Ulauncher"] floating enable border pixel 0
 
 # switch to workspace with urgent window automatically
 #for_window [urgent=latest] focus
@@ -236,7 +235,6 @@ bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 # autostart applications
 exec --no-startup-id nextcloud --background
 exec --no-startup-id picom --experimental-backends
-exec --no-startup-id ulauncher --hide-window
 exec --no-startup-id redshift -t 4000:3000
 
 # bar config
