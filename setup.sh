@@ -49,17 +49,18 @@ if [ ! -f /etc/yum.repos.d/nordvpn.repo ]; then
 	sudo dnf install -y https://repo.nordvpn.com/yum/nordvpn/centos/noarch/Packages/n/nordvpn-release-1.0.0-1.noarch.rpm
 fi
 
+say "Removing packages"
+sudo dnf remove -y $(sort -u ./remove-pkg.txt)
+
 say "Installing packages"
-sudo dnf install -y $(sort -u ./packages.txt)
+sudo dnf install -y $(sort -u ./install-pkg.txt)
 pip install --user $(sort -u ./pip.txt)
+
 
 if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
 	say "Setting up NVIDIA for $(hostname)"
 	sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
 fi
-
-say "Removing packages"
-sudo dnf remove -y dnfdragora
 
 say "Removing directories"
 rm -rf ~/{Documents,Music,Pictures,Public,Templates,Videos}
@@ -178,6 +179,9 @@ if [ ! -d ~/.config/nvim ]; then
 else 
 	say "nvim already configured"
 fi
+
+say "Setting iptables rules"
+sudo ./files/iptables.sh
 
 dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
 dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"

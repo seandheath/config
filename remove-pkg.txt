@@ -1,0 +1,7 @@
+firewalld
+dnfdragora
+ufw
+modemmanager
+anaconda*
+gparted
+marco
