@@ -145,28 +145,6 @@ else
     say "Rust already installed"
 fi
 
-if [ ! -d ~/.nvm ]; then
-    say "Installing NVM"
-    mkdir $HOME/.nvm
-    curl -sSL -o /tmp/nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
-    chmod +x /tmp/nvm.sh
-    /tmp/nvm.sh
-else
-    say "NVM already installed"
-fi
-
-if [ ! -d ~/.rvm ]; then
-    say "Installing RVM"
-    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-    curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-    curl -sSL -o /tmp/rvm.sh https://get.rvm.io
-    chmod +x /tmp/rvm.sh
-    /tmp/rvm.sh stable --ruby
-    source ~/.bashrc
-else
-    say "RVM already installed"
-fi
-
 if [ ! -d ~/.config/bash ]; then
     say "Setting up bash"
     git clone https://github.com/seandheath/bash.git ~/.config/bash
