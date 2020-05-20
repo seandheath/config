@@ -172,5 +172,8 @@ fi
 say "Setting iptables rules"
 sudo ./files/iptables.sh
 
+say "Setting up fish"
+sudo chsh -s /usr/bin/fish user
+
 dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
 dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"

@@ -1,4 +1,5 @@
 xorg-x11-drv-nvidia-cuda
+fish
 peek
 ulauncher
 profile-sync-daemon
