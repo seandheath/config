@@ -1,4 +1,6 @@
 xorg-x11-drv-nvidia-cuda
+peek
+ulauncher
 profile-sync-daemon
 akmod-nvidia
 i3status-rs
@@ -18,6 +20,7 @@ python3-psutil
 python3-devel
 rtorrent
 golang
+nodejs
 keepassxc
 libreoffice
 pigz

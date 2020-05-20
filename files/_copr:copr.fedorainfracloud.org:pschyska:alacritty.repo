@@ -1,0 +1,11 @@
+[copr:copr.fedorainfracloud.org:pschyska:alacritty]
+name=Copr repo for alacritty owned by pschyska
+baseurl=https://download.copr.fedorainfracloud.org/results/pschyska/alacritty/fedora-31-x86_64/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/pschyska/alacritty/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+

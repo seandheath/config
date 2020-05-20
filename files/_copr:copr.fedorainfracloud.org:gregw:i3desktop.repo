@@ -1,0 +1,11 @@
+[copr:copr.fedorainfracloud.org:gregw:i3desktop]
+name=Copr repo for i3desktop owned by gregw
+baseurl=https://download.copr.fedorainfracloud.org/results/gregw/i3desktop/fedora-31-x86_64/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/gregw/i3desktop/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+

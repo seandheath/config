@@ -19,8 +19,8 @@ say(){
 
 if [ ! -f /etc/yum.repos.d/google-chrome.repo ]; then
     say "Setting up fedora-workstation-repositories"
-    sudo dnf install fedora-workstation-repositories
-    sudo dnf config-manager --set-enabled google-chrome
+    sudo dnf install -y fedora-workstation-repositories
+    sudo dnf config-manager -y --set-enabled google-chrome
 fi
 
 if [ ! -f /etc/yum.repos.d/rpmfusion-free.repo ]; then
@@ -30,23 +30,23 @@ fi
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:szasza:Profile-sync-daemon.repo ]; then
     say "Adding COPR repository for profile-sync-daemon"
-    sudo dnf copr enable -y szasza/Profile-sync-daemon
+    sudo dnf copr enable -y szasza/Profile-sync-daemon fedora-31-x86_64
 fi
 
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo ]; then
     say "Adding COPR repository for Alacritty"
-    sudo dnf copr enable -y pschyska/alacritty
+    sudo dnf copr enable -y pschyska/alacritty fedora-31-x86_64
 fi
 
 if [ ! -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:gregw:i3desktop.repo ]; then
     say "Adding COPR repository for i3-gaps"
-    sudo dnf copr enable -y gregw/i3desktop
+    sudo dnf copr enable -y gregw/i3desktop fedora-31-x86_64
 fi
 
 if [ ! -f /etc/yum.repos.d/vscodium.repo ]; then
     say "Adding VSCodium Repository"
-    sudo rpm --import -y https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+    sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
     printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
 fi
 
@@ -71,8 +71,6 @@ fi
 say "Removing directories"
 rm -rf ~/{Documents,Music,Pictures,Public,Templates,Videos}
 
-say "Updating .profile"
-cp files/profile ~/.profile
 
 say "Updating alacritty"
 mkdir -p ~/.config/alacritty
@@ -101,8 +99,7 @@ sudo cp files/99-powertargets.rules /etc/udev/rules.d/
 sudo systemctl enable --now governor.service
 
 say "Enabling rslsync"
-sudo systemctl disable --now resilio-sync
-systemctl --user enable --now resilio-sync
+systemctl enable --user --now resilio-sync
 
 say "Updating flatpaks"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -140,10 +137,19 @@ if [ ! -d ~/.cargo ]; then
     curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
     chmod +x /tmp/rustup.sh
     /tmp/rustup.sh -y
-    source ~/.profile
 else
     say "Rust already installed"
 fi
+
+if [ ! -d ~/go/bin ]; then
+	say "Setting up go directories"
+	mkdir -p ~/go/bin
+	export GOPATH="~/go"
+	export PATH="$PATH:~/go/bin"
+fi
+
+say "Updating .profile"
+cp files/profile ~/.profile
 
 if [ ! -d ~/.config/bash ]; then
     say "Setting up bash"
