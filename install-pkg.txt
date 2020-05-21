@@ -1,4 +1,6 @@
 xorg-x11-drv-nvidia-cuda
+ripgrep
+fzf
 xournal
 peek
 ulauncher

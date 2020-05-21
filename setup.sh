@@ -178,5 +178,9 @@ sudo ./files/iptables.sh
 #cp files/fish_variables $HOME/.config/fish/
 #cp files/fish_prompt.fish $HOME/.config/fish/functions/
 
+say "Installing 'up'"
+sudo cp files/up /usr/bin/up
+sudo chmod 755 /usr/bin/up
+
 dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
 dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
