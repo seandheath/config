@@ -1,4 +1,5 @@
 xorg-x11-drv-nvidia-cuda
+google-chrome-stable
 fzf
 ripgrep
 xournal
