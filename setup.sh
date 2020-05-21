@@ -172,8 +172,11 @@ fi
 say "Setting iptables rules"
 sudo ./files/iptables.sh
 
-say "Setting up fish"
-sudo chsh -s /usr/bin/fish user
+#say "Setting up fish"
+#sudo chsh -s /usr/bin/fish user
+#mkdir -p $HOME/.config/fish/functions
+#cp files/fish_variables $HOME/.config/fish/
+#cp files/fish_prompt.fish $HOME/.config/fish/functions/
 
 dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
 dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"

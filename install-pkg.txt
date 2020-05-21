@@ -1,5 +1,5 @@
 xorg-x11-drv-nvidia-cuda
-fish
+xournal
 peek
 ulauncher
 profile-sync-daemon
@@ -13,7 +13,6 @@ i3-gaps
 htop
 tree
 nextcloud-client
-evince
 virt-manager
 alacritty
 python3-netifaces
