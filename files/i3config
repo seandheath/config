@@ -1,12 +1,18 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
+
+# set default desktop layout (default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 2
 default_floating_border normal
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #2fff00 #285577 #ffffff #c36f00   #c36f00
+client.focused          #007acc #292929 #ffffff #007acc   #007acc
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -24,13 +30,32 @@ font xft:Inconsolata 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id /usr/bin/alacritty
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# start program launcher
+#bindsym $mod+d exec --no-startup-id dmenu_run
+exec --no-startup-id ulauncher --no-extensions --no-window-shadow --hide-window
+
+################################################################################################
+## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+################################################################################################
+
+#exec --no-startup-id volumeicon
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
+
+################################################################################################
+
+# Screen brightness controls
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
 # Start Applications
-bindsym $mod+Ctrl+x --release exec --no-startup-id /usr/bin/xkill
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # change focus
 bindsym $mod+h focus left
@@ -86,7 +111,7 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open file manager
-bindsym Mod4+e exec --no-startup-id /usr/bin/caja
+bindsym Mod4+e exec --no-startup-id xdg-open /home/user
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -142,8 +167,9 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [instance="keepassxc" class="KeePassXC"] floating enable
-for_window [class="Clock-applet"] floating enable
+for_window [instance="keepassxc" class="KeePassXC"] floating enable border normal
+#for_window [class="Virt-manager"] floating enable border normal
+for_window [class="Clock-applet"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 #for_window [urgent=latest] focus
@@ -182,16 +208,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 20 px or 20 ppt
+        bindsym Down resize grow height 20 px or 20 ppt
+        bindsym Up resize shrink height 20 px or 20 ppt
+        bindsym Right resize grow width 20 px or 20 ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
@@ -207,22 +233,28 @@ bindsym Mod4+s exec --no-startup-id "flameshot gui"
 # KeePassXC
 bindsym $mod+Ctrl+z exec --no-startup-id "keepassxc"
 
-# Autostart applications
-exec --no-startup-id /usr/bin/nextcloud --background
-exec --no-startup-id /usr/bin/picom --experimental-backends
+# autostart applications
+exec --no-startup-id nextcloud --background
+exec --no-startup-id picom --experimental-backends
+exec --no-startup-id redshift -t 4000:3000
 
-# bar
+# bar config
 bar {
-	status_command /home/user/.local/bin/bumblebee-status \
---markup=pango \
--m publicip nic cpu2 memory disk caffeine battery \
--p cpu2.colored=1 cpu2.layout="cpu2.cpuload" \
-  disk.format="{percent:0.0f}%" memory.format="{percent:0.0f}%" nic.states="^down" \
-  pulseaudio.showbars=1 \
--t solarized-powerline
-	position bottom
-        tray_output none
+    font pango:DejaVu Sans Mono, FontAwesome 10
+    position bottom
+    status_command /usr/bin/i3status-rs ~/.config/i3status/config.toml
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+    tray_output none
 }
+
 
 #############################
 ### settings for i3-gaps: ###
@@ -280,4 +312,6 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 # Host Configuration
+

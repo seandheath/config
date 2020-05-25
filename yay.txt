@@ -1,0 +1,8 @@
+vscodium-bin
+i3status-rust-git
+openvpn-nordvpn
+libguestfs
+pwndbg
+profile-sync-daemon
+up
+rslsync
