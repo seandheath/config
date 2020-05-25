@@ -6,7 +6,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export REFDIR=$HOME/data/zettlr/refs
 export GOPATH=$HOME/go
 
-export PATH="$PATH:$HOME/go/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.local/bin"
 
 # Remove duplicates from path
 echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}'
