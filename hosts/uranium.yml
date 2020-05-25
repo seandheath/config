@@ -1,6 +1,0 @@
-- name: Install wifi firmware
-  copy:
-    src: files/iwlwifi-9000-pu-b0-jf-b0-34.ucode
-    dest: /lib/firmware/
-  become: yes
-

@@ -129,20 +129,10 @@
           warn: false
 
     - name: Install RVM
-      shell: "curl -sSL https://get.rvm.io | /bin/bash -s stable --ruby -- --ignore-dotfiles"
+      shell: "curl -sSL https://get.rvm.io | /bin/bash -s stable --ruby"
       args: 
           creates: $HOME/.rvm
           warn: false
-
-    - name: Set up Mate dconf
-      dconf:
-        key: "{{ item.key }}"
-        value: "{{ item.value | string }}"
-      with_items:
-        - key: "/org/mate/desktop/session/required-components-list"
-          value: "['windowmanager','panel']"
-        - key: "/org/mate/desktop/session/required-components/windowmanager"
-          value: '"i3"'
 
     - name: Link vim to nvim
       file:
