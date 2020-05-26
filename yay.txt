@@ -1,4 +1,5 @@
 vscodium-bin
+google-chrome
 ulauncher
 i3status-rust-git
 openvpn-nordvpn
