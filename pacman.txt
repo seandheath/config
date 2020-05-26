@@ -1,4 +1,10 @@
 ebtables
+bash-completion
+cockpit
+cockpit-dashboard
+cockpit-machines
+cockpit-podman
+redshift
 awesome-terminal-fonts
 python2-pip
 ruby

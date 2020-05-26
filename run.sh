@@ -95,6 +95,8 @@ echo "resilio sync"
 systemctl enable --user --now rslsync
 echo "psd"
 systemctl --user enable --now psd
+echo "cockpit"
+sudo systemctl enable --now cockpit.socket
 
 say "Setting iptables rules"
 sudo ./files/iptables.sh
