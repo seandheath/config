@@ -72,14 +72,6 @@ if [ ! -f /usr/bin/vim ]; then
     sudo ln -s /usr/bin/nvim /usr/bin/vim
 fi
 
-if [ ! -f /usr/share/xsessions/i3-gnome.desktop ]; then
-    echo "i3-gnome"
-    git clone https://github.com/i3-gnome/i3-gnome
-    cd /tmp/i3-gnome
-    sudo make install
-fi
-
-
 if [ ! -f /usr/bin/update_governor ]; then
 	say "Updating CPU Governor"
 	sudo cp files/{ac.target,battery.target,governor.service} /etc/systemd/system/
@@ -101,3 +93,6 @@ sudo systemctl disable --now libvirtd
 
 say "Setting iptables rules"
 sudo ./files/iptables.sh
+
+dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
+dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"

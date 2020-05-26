@@ -1,4 +1,5 @@
 ebtables
+neovim
 ccache
 nodejs
 i3-gaps
