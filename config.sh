@@ -53,8 +53,8 @@ systemctl --user enable --now psd
 echo "cockpit"
 sudo systemctl enable --now cockpit.socket
 
-say "Setting iptables rules"
-sudo ./files/iptables.sh
+say "Enabling ufw"
+sudo ufw enable
 
 dconf write /org/mate/desktop/session/required-components-list '["windowmanager", "panel"]'
 dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
