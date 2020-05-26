@@ -1,4 +1,9 @@
 ebtables
+awesome-terminal-fonts
+python2-pip
+ruby
+xclip
+npm
 neovim
 ccache
 nodejs

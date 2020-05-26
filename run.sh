@@ -1,37 +1,11 @@
 #!/bin/bash
+
 set -e 
 
 say(){
     echo ""
     echo "$(tput bold)$1$(tput sgr0)"
 }
-
-say "Configuring Yay"
-sudo sed -i "/PKGEXT='.pkg.tar.xz'/ c\\PKGEXT='.pkg.tar'" /etc/makepkg.conf
-sudo sed -i "/BUILDENV=(!distcc color !ccache check !sign)/ c\\BUILDENV=(!distcc color ccache check !sign)" /etc/makepkg.conf
-
-say "Pacman"
-sudo pacman --needed --noconfirm -Syyu $(sort -u ./pacman.txt)
-say "Pip"
-pip install --user $(sort -u ./pip.txt)
-say "Yay"
-yay --needed --noconfirm -S $(sort -u ./yay.txt)
-
-if [ ! -d ~/.cargo ]; then
-    say "Rust"
-    curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
-    chmod +x /tmp/rustup.sh
-    /tmp/rustup.sh -y
-fi
-
-if [ ! -d ~/go/bin ]; then
-	say "Go"
-	mkdir -p ~/go/bin
-	export GOPATH="~/go"
-	export PATH="$PATH:~/go/bin"
-fi
-say "Removing directories"
-rm -rf $HOME/{Documents,Music,Pictures,Public,Templates,Videos}
 
 say "Updating Config Files"
 echo "alacritty"
@@ -50,10 +24,45 @@ echo "git"
 git config --global user.name "Sean Heath"
 git config --global user.email "se@nheath.com"
 
+echo "profile"
+cp files/profile ~/.profile
+source ~/.profile
+echo "PATH: $PATH"
+
 if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
     echo "nvidia"
     sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
 fi
+
+say "Configuring Yay"
+sudo sed -i "/PKGEXT='.pkg.tar.xz'/ c\\PKGEXT='.pkg.tar'" /etc/makepkg.conf
+sudo sed -i "/BUILDENV=(!distcc color !ccache check !sign)/ c\\BUILDENV=(!distcc color ccache check !sign)" /etc/makepkg.conf
+
+say "Pacman"
+sudo pacman --needed --noconfirm -Syyu $(sort -u ./pacman.txt)
+say "Pip"
+pip install --user $(sort -u ./pip.txt)
+
+if [ ! -d ~/.cargo ]; then
+    say "Rust"
+    curl -sSL -o /tmp/rustup.sh https://sh.rustup.rs
+    chmod +x /tmp/rustup.sh
+    /tmp/rustup.sh -y
+fi
+
+if [ ! -d ~/go/bin ]; then
+	say "Go"
+	mkdir -p ~/go/bin
+	export GOPATH="~/go"
+	export PATH="$PATH:~/go/bin"
+fi
+
+say "Yay"
+yay --needed --noconfirm -S $(sort -u ./yay.txt)
+
+say "Removing directories"
+rm -rf $HOME/{Documents,Music,Pictures,Public,Templates,Videos}
+
 
 if [ ! -d ~/.config/bash ]; then
     echo "bash"
@@ -86,10 +95,6 @@ echo "resilio sync"
 systemctl enable --user --now rslsync
 echo "psd"
 systemctl --user enable --now psd
-
-say "Disabling Services"
-echo "libvirtd"
-sudo systemctl disable --now libvirtd
 
 say "Setting iptables rules"
 sudo ./files/iptables.sh
