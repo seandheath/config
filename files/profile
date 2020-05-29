@@ -1,4 +1,8 @@
 export TERMINAL=/usr/bin/alacritty
+<<<<<<< HEAD
+=======
+export TERM=/usr/bin/alacritty
+>>>>>>> 25d46e4d316c5b0b3957fb41b5bf7745f6b5f3da
 export USER=user
 export EDITOR=/usr/bin/nvim
 export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share/
