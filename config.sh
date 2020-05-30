@@ -15,6 +15,7 @@ cp files/alacritty.yml ~/.config/alacritty/
 echo "i3"
 mkdir -p ~/.config/i3
 cp files/i3config ~/.config/i3/config
+cat files/i3config-$(hostname) >> ~/.config/i3/config
 
 echo "i3status-rust"
 mkdir -p ~/.config/i3status
@@ -51,6 +52,9 @@ if [ ! -f /usr/bin/update_governor ]; then
 	sudo cp files/99-powertargets.rules /etc/udev/rules.d/
 	sudo systemctl enable --now governor.service
 fi
+
+say "Setting npm config"
+npm config set prefix ~/.npm
 
 say "Enabling Services"
 echo "resilio sync"
