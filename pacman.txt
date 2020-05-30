@@ -1,4 +1,5 @@
 ebtables
+crun
 bash-completion
 cockpit
 cockpit-dashboard

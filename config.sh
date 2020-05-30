@@ -24,6 +24,13 @@ echo "git"
 git config --global user.name "Sean Heath"
 git config --global user.email "se@nheath.com"
 
+echo "podman"
+echo "user:100000:65536" | sudo tee /etc/subuid
+echo "user:100000:65536" | sudo tee /etc/subgid
+
+echo 'npm'
+npm config set prefix ~/.npm
+
 echo "rslsync"
 mkdir -p ~/.config/rslsync
 cp files/rslsync.conf ~/.config/rslsync/rslsync.conf
