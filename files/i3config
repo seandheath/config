@@ -111,7 +111,7 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Open file manager
-bindsym Mod4+e exec --no-startup-id xdg-open /home/user
+bindsym Mod4+Ctrl+e exec --no-startup-id xdg-open /home/user
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
