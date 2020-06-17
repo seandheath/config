@@ -22,6 +22,7 @@ npm config set prefix ~/.npm
 
 echo "rslsync"
 mkdir -p ~/.config/rslsync
+mkdir ~/.sync
 cp files/rslsync.conf ~/.config/rslsync/rslsync.conf
 
 if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
