@@ -12,11 +12,6 @@ cp files/profile ~/.profile
 source ~/.profile
 echo "PATH: $PATH"
 
-if [ ! -f /etc/X11/xorg.conf.d/20-nvidia.conf ]; then
-    echo "nvidia"
-    sudo cp files/nvidia-$(hostname) /etc/X11/xorg.conf.d/20-nvidia.conf
-fi
-
 say "Configuring Yay"
 sudo sed -i "/PKGEXT='.pkg.tar.xz'/ c\\PKGEXT='.pkg.tar'" /etc/makepkg.conf
 sudo sed -i "/BUILDENV=(!distcc color !ccache check !sign)/ c\\BUILDENV=(!distcc color ccache check !sign)" /etc/makepkg.conf

@@ -1,9 +1,5 @@
 vscodium-bin
-virt-manager-git
 google-chrome
-ulauncher
-i3status-rust-git
-openvpn-nordvpn
 libguestfs
 pwndbg
 profile-sync-daemon
