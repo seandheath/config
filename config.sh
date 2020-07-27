@@ -33,9 +33,6 @@ fi
 say "Removing directories"
 rm -rf $HOME/{Documents,Music,Pictures,Public,Templates,Videos}
 
-say "Setting npm config"
-npm config set prefix ~/.npm
-
 say "Enabling Services"
 echo "resilio sync"
 systemctl enable --user --now rslsync

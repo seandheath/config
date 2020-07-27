@@ -1,6 +1,6 @@
-vscodium-bin
 google-chrome
-libguestfs
+visual-studio-code-bin
+libguestfs-git
 pwndbg
 profile-sync-daemon
 up

@@ -1,4 +1,5 @@
 ebtables
+opensc
 qemu
 virt-manager
 crun
