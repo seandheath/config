@@ -38,3 +38,8 @@ echo "resilio sync"
 systemctl enable --user --now rslsync
 echo "psd"
 systemctl --user enable --now psd
+echo "syncthing"
+sudo systemctl enable --now syncthing@user
+
+say "Gnome settings"
+dconf load / < files/gnome.conf

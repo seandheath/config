@@ -7,6 +7,8 @@ say(){
     echo "$(tput bold)$1$(tput sgr0)"
 }
 
+WD=$(pwd)
+
 say "Updating Profile"
 cp files/profile ~/.profile
 source ~/.profile
@@ -36,6 +38,13 @@ if [ ! -d ~/go/bin ]; then
 fi
 
 say "Yay"
+if [ ! -f "/usr/bin/yay" ]; then
+	cd /tmp
+	git clone https://aur.archlinux.org/yay-git.git
+	cd yay-git
+	makepkg -si
+	cd $WD
+fi
 yay --needed --noconfirm -S $(sort -u ./yay.txt)
 
 if [ ! -d ~/.config/bash ]; then

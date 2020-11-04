@@ -15,9 +15,7 @@ ghidra
 dnsmasq
 htop
 tree
-nextcloud-client
 go
-keepassxc
 libreoffice
 pigz
 base-devel
@@ -30,4 +28,10 @@ buildah
 podman
 clang
 clang-tools-extra
-yay
+syncthing-gtk
+python-pip
+firefox
+gnome-tweaks
+libguestfs
+fzf
+steam
