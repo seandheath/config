@@ -25,6 +25,9 @@ mkdir -p ~/.config/rslsync
 mkdir ~/.sync
 cp files/rslsync.conf ~/.config/rslsync/rslsync.conf
 
+echo 'gnome'
+dconf load / < files/gnome.conf
+
 say "Removing directories"
 rm -rf $HOME/{Documents,Music,Pictures,Public,Templates,Videos}
 
