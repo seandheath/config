@@ -1,7 +1,4 @@
 google-chrome
 pwndbg
-profile-sync-daemon
 rslsync
-bitwarden-bin
-zettlr-bin
 gnome-shell-extension-gtile-git
