@@ -1,4 +1,3 @@
-google-chrome
-pwndbg
 rslsync
+teams
 gnome-shell-extension-gtile-git

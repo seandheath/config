@@ -1,4 +1,5 @@
 ebtables
+npm
 opensc
 qemu
 virt-manager
@@ -33,3 +34,4 @@ libguestfs
 fzf
 steam
 keepassxc
+pwndbg

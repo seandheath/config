@@ -22,6 +22,8 @@ say "Pacman"
 sudo pacman --needed --noconfirm -Syyu $(sort -u ./pacman.txt)
 say "Pip"
 pip install --user $(sort -u ./pip.txt)
+say "Yay"
+yay --norebuild --noconfirm -S $(echo $(cat ./yay.txt))
 
 if [ ! -d ~/.cargo ]; then
     say "Rust"
