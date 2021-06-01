@@ -14,6 +14,11 @@ cp files/profile ~/.profile
 source ~/.profile
 echo "PATH: $PATH"
 
+say "Installing Yay"
+git clone https://aur.archlinux.org/yay-git.git /tmp/yay
+cd /tmp/yay
+makepkg -si
+
 say "Configuring Yay"
 yay --save --sudoloop
 sudo sed -i "/PKGEXT='.pkg.tar.xz'/ c\\PKGEXT='.pkg.tar'" /etc/makepkg.conf
