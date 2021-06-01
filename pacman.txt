@@ -1,5 +1,4 @@
-ebtables
-npm
+iptables-nft
 opensc
 qemu
 virt-manager
@@ -22,16 +21,12 @@ filezilla
 progress
 cmake
 code
-flameshot
-buildah
-podman
 clang
 clang-tools-extra
-syncthing-gtk
 python-pip
 firefox
-libguestfs
 fzf
-steam
 keepassxc
 pwndbg
+npm
+steam

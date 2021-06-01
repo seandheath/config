@@ -1,3 +1,4 @@
-rslsync
+steam
+syncthing-gtk
 teams
 gnome-shell-extension-gtile-git

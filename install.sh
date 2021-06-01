@@ -15,10 +15,13 @@ source ~/.profile
 echo "PATH: $PATH"
 
 say "Configuring Yay"
+yay --save --sudoloop
 sudo sed -i "/PKGEXT='.pkg.tar.xz'/ c\\PKGEXT='.pkg.tar'" /etc/makepkg.conf
 sudo sed -i "/BUILDENV=(!distcc color !ccache check !sign)/ c\\BUILDENV=(!distcc color ccache check !sign)" /etc/makepkg.conf
 
 say "Pacman"
+sudo sed -i "s/#\[multilib\]/[multilib]" /etc/pacman.conf
+sudo sed -i "s/#Include = \/etc\/pacman\.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/" /etc/pacman.conf
 sudo pacman --needed --noconfirm -Syyu $(sort -u ./pacman.txt)
 say "Pip"
 pip install --user $(sort -u ./pip.txt)
@@ -55,3 +58,15 @@ fi
 if [ ! -f /usr/bin/vim ]; then
     sudo ln -s /usr/bin/nvim /usr/bin/vim
 fi
+
+say "Updating Config Files"
+echo "git"
+git config --global user.name "Sean Heath"
+git config --global user.email "se@nheath.com"
+
+echo 'gnome'
+dconf load / < files/gnome.conf
+
+say "Enabling Services"
+echo "syncthing"
+sudo systemctl enable --now syncthing@user
